@@ -12,6 +12,10 @@ def show(id):
     #here the type of id  is not specified so by default it becomes string
     return {"Data": id}
 
+@app.get('/blog/{id}/comments')
+def comments(id):
+    return {"Data": f"Comments for blog {"1","2"}"}
+
 """
 ☁  Fast-Api-tutorials-by-bitfumes-youtube [main] uvicorn main:app --reload
 INFO:     Will watch for changes in these directories: ['/Users/sayantanpal100/Desktop/Udemy Projects/Fast-Api-tutorials-by-bitfumes-youtube']
@@ -30,6 +34,10 @@ INFO:     127.0.0.1:62361 - "GET /blog/sdfsfsfgvsfvsdf HTTP/1.1" 200 OK
 "Data": "sdfsfsfgvsfvsdf"
 }
 
+INFO:     127.0.0.1:49771 - "GET /blog/sdfsfsfgvsfvsdf/comments HTTP/1.1" 200 OK
 
+{
+"Data": "Comments for blog ('1', '2')"
+}
 
 """
