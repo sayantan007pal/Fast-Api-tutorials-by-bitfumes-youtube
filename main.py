@@ -7,45 +7,35 @@ def index():
     return {"Data": "Blog list"}
 
 
-@app.get('/blog/{id}')
-def show(id: int):
-    #here the type of id  is specified to be int
-    # Fetch blog post by id
-    return {"Data": id}
-
 @app.get('/blogs/unpublished')
 def unpublished():
     # Fetch unpublished blog posts
     return {"Data": "Unpublished blog posts"}
 
+@app.get('/blogs/{id}')
+def show(id: int):
+    #here the type of id  is specified to be int
+    # Fetch blog post by id
+    return {"Data": id}
+
+
+
 """
 ☁  Fast-Api-tutorials-by-bitfumes-youtube [main] uvicorn main:app --reload
 
 
-INFO:     127.0.0.1:53877 - "GET /blog/unpublished HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:56602 - "GET /blogs/unpublished HTTP/1.1" 200 OK
 
 
 {
-"detail": [
-    {
-        "type": "int_parsing",
-        "loc": [
-            "path",
-            "id"
-        ],
-        "msg": "Input should be a valid integer, unable to parse string as an integer",
-        "input": "unpublished"
-    }
-]
+"Data": "Unpublished blog posts"
 }
 
 """
 
 """
-here error is coming as fastAPI read routes like a ladder i.e
- 1. It checks for exact matches first
- 2. If no exact match is found, it checks for path parameters
- 3. Finally, it checks for query parameters
-
-thus the error is occurring because FastAPI is trying to match the request path "/blog/unpublished" with the defined routes "/blog/{id}" and is getting confused because "unpublished" is not a valid integer.
+Now the API is able to correctly identify the route for unpublished blog posts.
+as the request path "/blogs/unpublished" matches the defined route 
+as while running  the FastAPI application, it checks for exact matches first thus 
+ path "/blogs/unpublished" is checked before the "blogs/{id}" route is checked.
 """
